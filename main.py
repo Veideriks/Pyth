@@ -1,39 +1,57 @@
-#2
+import random
 
-x = 123
-sum = (x//10%10)+(x//100%10)+(x%10)
-print ("Сумма: ", sum)
+# 10
 
-#4
-
-s=24
-y=s/6
-kat = y*4
-pet = y
-ser = y
-print ("Катя: ", kat, "Петя: ", pet, "Сережа: ", ser)
-
-#6
-
-bilet = 385916
-happyn = (bilet//10000%10)+(bilet//100000%10)+(bilet//1000%10)
-happyk = (bilet//10%10)+(bilet//100%10)+(bilet%10)
-if happyn == happyk:
-    print ("Счастливый билетик")
+n = int(input("Введите число монет: "))
+i=0
+orel = 0
+rewka = 0
+while (i<n):
+    brosok = random.randint (0,2)
+    if (brosok==1):
+        orel+=1
+    else:
+        rewka+=1
+    i+=1
+print (orel)
+print (rewka)
+if (orel==0 or rewka==0):
+    print("Ничего не нужно переворачивать")
+elif (orel>rewka):
+    print("Необходимо перевернуть монет:", orel)
 else:
-    print ("Не счастливый билетик")
+    print("Необходимо перевернуть монет:", rewka)
 
-#8
+# 12
 
-n=3
-m=2
-k=1
+x = random.randint (0,1001)
+y = random.randint (0,1001)
+s = x + y
+p = x*y
+n1, n2, n3 = 1, 1, 1
 
-if k == m*n:
-    print("Это и есть вся шоколадка")
-elif k > m*n:
-    print("Это больше чем размер шоколадки")
-elif k == n or k == m or k!=2 and k%2!=1:
-    print("Можно отломить")
-else:
-    print("Нельзя отломить")
+i = 0
+print (x)
+print (y)
+
+while i<i+1:
+    n1 = n3
+    n1 = p//n1
+    n2 = s-n1
+    if ((n1 == x and n2 == y) or (n1 == y and n2 == x)):
+        print("Заданы числа:", n1, "и", n2)
+        break
+    n3+=1
+    i+=1
+
+# 14
+
+number = int(input("Введите число: "))
+i = 1
+step = 2
+while (step <= number):
+    step *=2
+    if (step>number):
+        break
+    print ("Степень", i, step)
+    i+=1
