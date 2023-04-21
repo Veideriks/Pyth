@@ -1,57 +1,89 @@
 import random
 
-# 10
+# 16 and 18 полагаю, можно решить как-то более изящно, но пришла именно такая странная идея)
 
-n = int(input("Введите число монет: "))
-i=0
-orel = 0
-rewka = 0
-while (i<n):
-    brosok = random.randint (0,2)
-    if (brosok==1):
-        orel+=1
-    else:
-        rewka+=1
-    i+=1
-print (orel)
-print (rewka)
-if (orel==0 or rewka==0):
-    print("Ничего не нужно переворачивать")
-elif (orel>rewka):
-    print("Необходимо перевернуть монет:", orel)
+numbers = []
+n = int(input("Введите количество элементов: "))
+if n <= 0:
+    print("Введите число больше нуля")
 else:
-    print("Необходимо перевернуть монет:", rewka)
+    for i in range (n):
+        numbers.append(random.randint(1,10))
+    print (numbers)
+    s = int(input("Введите число для поиска совпадений: "))
+    count = 0
+    for i in range (n):
+        if numbers[i] == s:
+            count+=1
+    print (count)
+    x = int(input("Введите число для поиска ближайшего: "))
+    sosed = 0
+    dist = []
+    for i in range(n):
+        dist.append(abs(numbers[i]-x))
+    print(dist)
+    minim = dist[i]
+    for i in range(n):
+        if dist[i]<=minim:
+            minim = dist[i]
+            sosed = i
+print (numbers[sosed])
 
-# 12
+# 20
 
-x = random.randint (0,1001)
-y = random.randint (0,1001)
-s = x + y
-p = x*y
-n1, n2, n3 = 1, 1, 1
+slovo = list((input("Введите слово: ").upper()))
+elements = ["A", "E", "I", "O", "U", "L", "N", "S", "T", "R",
+             "А", "В", "Е", "И", "Н", "О", "Р", "С", "Т"]
+elements_2 = ["D", "G", "Д", "К", "Л", "М", "П", "У"]
+elements_3 = ["B", "C", "M", "P", "Б", "Г", "Ё", "Ь", "Я"]
+elements_4 = ["F", "H", "V", "W", "Y", "Й", "Ы"]
+elements_5 = ["K", "Ж", "З", "Х", "Ц", "Ч"]
+elements_8 = ["J", "X", "Ш", "Э", "Ю"]
+elements_10 = ["Q", "Z", "Ф", "Щ", "Ъ"]
+print (slovo)
 
-i = 0
-print (x)
-print (y)
+score = 0
 
-while i<i+1:
-    n1 = n3
-    n1 = p//n1
-    n2 = s-n1
-    if ((n1 == x and n2 == y) or (n1 == y and n2 == x)):
-        print("Заданы числа:", n1, "и", n2)
-        break
-    n3+=1
-    i+=1
+for i in range (len(slovo)):
+    for j in range (len(elements)):
+        if slovo[i] == elements[j]:
+            score = score + 1
+for i in range (len(slovo)):
+    for j in range (len(elements_2)):
+        if slovo[i] == elements_2[j]:
+            score = score + 2
+for i in range(len(slovo)):
+    for j in range (len(elements_3)):
+        if slovo[i] == elements_3[j]:
+            score = score + 3
+for i in range(len(slovo)):
+    for j in range (len(elements_4)):
+        if slovo[i] == elements_4[j]:
+            score = score + 4
+for i in range(len(slovo)):
+    for j in range (len(elements_5)):
+        if slovo[i] == elements_5[j]:
+            score = score + 5
+for i in range(len(slovo)):
+    for j in range (len(elements_8)):
+        if slovo[i] == elements_8[j]:
+            score = score + 8
+for i in range(len(slovo)):
+    for j in range (len(elements_10)):
+        if slovo[i] == elements_10[j]:
+            score = score + 10
 
-# 14
+print (score)
 
-number = int(input("Введите число: "))
-i = 1
-step = 2
-while (step <= number):
-    step *=2
-    if (step>number):
-        break
-    print ("Степень", i, step)
-    i+=1
+
+# хотел изначально список и чтобы в счет сразу значение цифры шло, но как то не задалось
+# elements = {("A", "E", "I", "O", "U", "L", "N", "S", "T", "R",
+#             "А", "В", "Е", "И", "Н", "О", "Р", "С", "Т"):"1",
+#             ("D", "G", "Д", "К", "Л", "М", "П", "У"):"2",
+#             ("B", "C", "M", "P", "Б", "Г", "Ё", "Ь", "Я"):"3",
+#             ("F", "H", "V", "W", "Y", "Й", "Ы"):"4",
+#             ("K", "Ж", "З", "Х", "Ц", "Ч"):"5",
+#             ("J", "X", "Ш", "Э", "Ю"):"8",
+#             ("Q", "Z", "Ф", "Щ", "Ъ"):"10"}
+# потом еще словил ряд ошибок походу и закипел, поэтому то к чему пришел явно не оптимально,
+# почему то даже после иф елсе корректно не работал, но т к закипел просто разбил на новые циклы
