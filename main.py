@@ -1,40 +1,22 @@
-import random
+# 26
 
-# 22
+x = a = int(input())
+b = int(input())
+def step (a,b):
+    if b>1:
+        return step (a*x,b-1)
+    return a
 
-numbers = []
-numbers_2 = []
-n = int(input("Введите количество элементов: "))
-m = int(input("Введите количество элементов: "))
+print (step (a,b))
 
-for i in range (n):
-    numbers.append(random.randint(1,10))
-print (numbers)
-for i in range (m):
-    numbers_2.append(random.randint(1,10))
-print (numbers_2)
+# 28
 
-x = sorted(set(numbers).intersection(set(numbers_2)))
+a = int(input())
+b = int(input())
 
-print (x)
+def sum (a,b):
+    if b!=0:
+        return sum (a+1,b-1)
+    return a
 
-# 24
-
-jag = []
-n = int(input("Введите количество элементов: "))
-for i in range (n):
-    jag.append(random.randint(1,5))
-print(jag)
-
-maxim = 0
-for i in range (n):
-    if i == 0:
-        if jag[i]+jag[-1]+jag[i+1]>maxim:
-            maxim = jag[i]+jag[-1]+jag[i+1]
-    if i == n-1:
-        if jag[i]+jag[1]+jag[i-1]>maxim:
-            maxim = jag[i]+jag[1]+jag[i-1]
-    else:
-        if jag[i]+jag[i+1]+jag[i-1]>=maxim:
-            maxim = jag[i]+jag[i-1]+jag[i+1]
-print (maxim)
+print (sum(a,b))
