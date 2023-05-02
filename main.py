@@ -1,22 +1,23 @@
-# 26
+# 30
 
-x = a = int(input())
-b = int(input())
-def step (a,b):
-    if b>1:
-        return step (a*x,b-1)
-    return a
+# a1 = int(input())
+# d = int(input())
+# n = int(input())
+# m = []
+#
+# for i in range (n):
+#     m.append(a1 + i * d)
+#
+# print (m)
 
-print (step (a,b))
+# 32
 
-# 28
+x = int(input())
+m = [1,2,3,4,5,6,7,8,9]
 
-a = int(input())
-b = int(input())
+for i in range (len(m)):
+    if (m[i]==x):
+        print ("Индекс заданного числа =" , i)
+    elif (i==len(m)-1):
+        print("Заданное число вне диапозона")
 
-def sum (a,b):
-    if b!=0:
-        return sum (a+1,b-1)
-    return a
-
-print (sum(a,b))
