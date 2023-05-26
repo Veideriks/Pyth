@@ -1,23 +1,25 @@
-# 30
+# 34
 
-# a1 = int(input())
-# d = int(input())
-# n = int(input())
-# m = []
-#
-# for i in range (n):
-#     m.append(a1 + i * d)
-#
-# print (m)
+stih = (input().lower().split())
 
-# 32
+character = ["а","у","е","ы","о","э","я","и","ю","ё"]
+def chek (stih, character)->bool:
+    return len(set(map(lambda itm: sum(map(lambda item: itm.count(item), character)), stih)))<2
 
-x = int(input())
-m = [1,2,3,4,5,6,7,8,9]
+if chek(stih, character):
+    print("Парам пам-пам")
+else:
+    print("Пам парам")
 
-for i in range (len(m)):
-    if (m[i]==x):
-        print ("Индекс заданного числа =" , i)
-    elif (i==len(m)-1):
-        print("Заданное число вне диапозона")
+# 36
+num_rows = int(input())
+num_columns = int(input())
+
+def print_operation_table(operation, num_rows, num_columns):
+    for i in range(1, num_rows + 1):
+        for j in range(1, num_columns + 1):
+            print(*list(map(operation, [i], [j])), end="\t")
+        print()
+
+print_operation_table(lambda x,y: x*y, num_rows, num_columns)
 
