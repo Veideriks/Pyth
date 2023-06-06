@@ -1,5 +1,4 @@
 import pandas as pd
-import xlsxwriter
 
 df = pd.read_excel(r"C:\Users\Veider\Desktop\Python\Sem\Справочник.xlsx")
 
