@@ -1,25 +1,82 @@
-# 34
+import pandas as pd
+import xlsxwriter
 
-stih = (input().lower().split())
+df = pd.read_excel(r"C:\Users\Veider\Desktop\Python\Sem\Справочник.xlsx")
 
-character = ["а","у","е","ы","о","э","я","и","ю","ё"]
-def chek (stih, character)->bool:
-    return len(set(map(lambda itm: sum(map(lambda item: itm.count(item), character)), stih)))<2
+index = 0
+def dobavlenie():
+    df.loc[len(df.index)] = [input("Введите Имя/фамилию: "),
+    input("Введите номер: ")]
+    return
+def poisk():
+    print ("По какому параметру ищем контакт?")
+    print ("Имя/Фамилия, Номер телефона")
+    otvet = input()
+    global index
+    if otvet == ("Имя" or "Фамилия"):
+        print("Введите Имя/Фамилию: ")
+        name = input()
+        index = df[df["Имя/Фамилия"] == name].index[0]
+        print(df[df["Имя/Фамилия"] == name])
+        return index
+    if otvet == "Номер телефона":
+        print("Введите номер телефона: ")
+        numbers = int(input())
+        index = df[df["Номер телефона"] == numbers].index[0]
+        print(df[df["Номер телефона"] == numbers])
+        return index
+    else:
+        return print("Такого контакта нет")
+def ydalenie ():
+    poisk()
+    df.drop(index = df.index[index], inplace = True)
+def izmenenie ():
+    poisk()
+    print("Вы хотите изменить Имя/Фамилию или Номер телефона?")
+    otvet = input()
+    global index
+    if otvet == ("Имя" or "Фамилия"):
+        print("Введите новое значение: ")
+        name = input()
+        df.at[index, "Имя/Фамилия"] = name
+        print(df[df["Имя/Фамилия"] == name])
+        return
+    if otvet == "Номер телефона":
+        print("Введите новое значение: ")
+        numbers = int(input())
+        df.at[index, "Номер телефона"] = numbers
+        print(df[df["Номер телефона"] == numbers])
+        return
 
-if chek(stih, character):
-    print("Парам пам-пам")
-else:
-    print("Пам парам")
+def spravochnik():
+    print("Что необходимо сделать?")
+    print("Показать весь справочник")
+    print("Найти контакт")
+    print("Добавить контакт")
+    print("Удалить контакт")
+    print("Изменить контакт")
+    print("Сохранить и выйти")
+    otvet = input()
+    if otvet == "Показать весь справочник":
+        print(df)
+        spravochnik()
+    if otvet == "Найти контакт":
+        poisk()
+        spravochnik()
+    if otvet == "Добавить контакт":
+        dobavlenie()
+        spravochnik()
+    if otvet == "Удалить контакт":
+        ydalenie()
+        print("Контакт удален")
+        spravochnik()
+    if otvet == "Изменить контакт":
+        izmenenie()
+        print("Контакт изменен")
+        spravochnik()
+    if otvet == "Сохранить и выйти":
+        df.to_excel(r"C:\Users\Veider\Desktop\Python\Sem\Справочник.xlsx", engine='xlsxwriter', index=False)
+        return
 
-# 36
-num_rows = int(input())
-num_columns = int(input())
-
-def print_operation_table(operation, num_rows, num_columns):
-    for i in range(1, num_rows + 1):
-        for j in range(1, num_columns + 1):
-            print(*list(map(operation, [i], [j])), end="\t")
-        print()
-
-print_operation_table(lambda x,y: x*y, num_rows, num_columns)
+spravochnik()
 
