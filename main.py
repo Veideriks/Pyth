@@ -1,8 +1,6 @@
 import pandas as pd
 
 df = pd.read_excel(r"C:\Users\Veider\Desktop\Python\Sem\Справочник.xlsx")
-
-index = 0
 def dobavlenie():
     df.loc[len(df.index)] = [input("Введите Имя/фамилию: "),
     input("Введите номер: ")]
@@ -11,29 +9,28 @@ def poisk():
     print ("По какому параметру ищем контакт?")
     print ("Имя/Фамилия, Номер телефона")
     otvet = input()
-    global index
     if otvet == ("Имя" or "Фамилия"):
         print("Введите Имя/Фамилию: ")
         name = input()
-        index = df[df["Имя/Фамилия"] == name].index[0]
         print(df[df["Имя/Фамилия"] == name])
+        index = df[df["Имя/Фамилия"] == name].index[0]
         return index
     if otvet == "Номер телефона":
         print("Введите номер телефона: ")
         numbers = int(input())
-        index = df[df["Номер телефона"] == numbers].index[0]
         print(df[df["Номер телефона"] == numbers])
+        index = df[df["Имя/Фамилия"] == numbers].index[0]
         return index
     else:
-        return print("Такого контакта нет")
+        print("Такого контакта нет")
+        poisk()
 def ydalenie ():
-    poisk()
+    index = poisk()
     df.drop(index = df.index[index], inplace = True)
 def izmenenie ():
-    poisk()
+    index = poisk()
     print("Вы хотите изменить Имя/Фамилию или Номер телефона?")
     otvet = input()
-    global index
     if otvet == ("Имя" or "Фамилия"):
         print("Введите новое значение: ")
         name = input()
@@ -77,5 +74,16 @@ def spravochnik():
         df.to_excel(r"C:\Users\Veider\Desktop\Python\Sem\Справочник.xlsx", engine='xlsxwriter', index=False)
         return
 
-spravochnik()
+# spravochnik()
 
+name = "Игорь"
+x = (df[df["Имя/Фамилия"] == name].empty)
+if ((df[df["Имя/Фамилия"] == name].empty)!= True):
+    print(df[df["Имя/Фамилия"] == name])
+else:
+    print("нет такого")
+#
+# df[df["Имя/Фамилия"] == "Иван"]
+
+# print (x)
+# print (type(x))
